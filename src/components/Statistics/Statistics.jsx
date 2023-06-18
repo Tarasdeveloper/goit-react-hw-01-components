@@ -6,28 +6,21 @@ import {
   Percentage,
   Statistic,
 } from './Statistics.styled';
-export const Statistics = ({}) => {
+
+import { randomColor } from './randomColor';
+
+export const Statistics = ({ title, stats }) => {
   return (
     <Statistic>
-      <Title>Upload stats</Title>
+      {title && <Title>{title}</Title>}
 
       <StatList>
-        <ListItem>
-          <LabelStat>.docx</LabelStat>
-          <Percentage>4%</Percentage>
-        </ListItem>
-        <ListItem>
-          <LabelStat>.mp3</LabelStat>
-          <Percentage>14%</Percentage>
-        </ListItem>
-        <ListItem>
-          <LabelStat>.pdf</LabelStat>
-          <Percentage>41%</Percentage>
-        </ListItem>
-        <ListItem>
-          <LabelStat>.mp4</LabelStat>
-          <Percentage>12%</Percentage>
-        </ListItem>
+        {stats.map(sts => (
+          <ListItem key={sts.id} style={{ backgroundColor: randomColor() }}>
+            <LabelStat>{sts.label}</LabelStat>
+            <Percentage>{sts.percentage}%</Percentage>
+          </ListItem>
+        ))}
       </StatList>
     </Statistic>
   );
